@@ -1,0 +1,32 @@
+name: update_sample
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  firebase_core: ^2.8.0
+  firebase_remote_config: ^3.0.15
+  flutter_hooks: ^0.18.6
+  hooks_riverpod: ^2.3.1
+  package_info_plus: ^3.0.3
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+  pedantic_mono: ^1.21.1
+
+flutter:
+
+  uses-material-design: true
