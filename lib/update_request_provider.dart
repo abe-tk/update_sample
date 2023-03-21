@@ -12,21 +12,18 @@ final updateRequesterProvider = FutureProvider<UpdateRequestType>((ref) async {
   final remoteConfig = FirebaseRemoteConfig.instance;
   // 本番環境
   // const interval = Duration(minutes: 12);
-  // 開発
+  // 開発環境
   const interval = Duration.zero;
 
   // シングルトンオブジェクトの取得
   // setConfigSettings()をawaitとしないとfetchAndActivate()でエラーとなるため、
-  // remote_config_provider.dartで分けずに処理を行っている
+  // remote_config_provider.dartと分けずに処理を行っている
   await remoteConfig.setConfigSettings(
     RemoteConfigSettings(
       fetchTimeout: const Duration(minutes: 1),
       minimumFetchInterval: interval,
     ),
   );
-
-  // 初期化・アクティベート済みのRemoteConfigインスタンス
-  // final remoteConfig = ref.watch(remoteConfigProvider);
   await remoteConfig.fetchAndActivate();
   // 現在のアプリバージョンを取得するためにPackageInfoを利用
   final appPackageInfo = await PackageInfo.fromPlatform();
