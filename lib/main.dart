@@ -1,29 +1,34 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:update_sample/page/version_check_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:update_sample/app.dart';
+import 'package:update_sample/feature/util/shared_preferences/shared_preferences_repository.dart';
 
-import 'firebase_options.dart';
+import 'config/firebase/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // SharedPreferencesの初期化
+  late final SharedPreferences sharedPreferences;
+  await Future.wait([
+    Future(() async {
+      sharedPreferences = await SharedPreferences.getInstance();
+    }),
+  ]);
+
   runApp(
-    const ProviderScope(
-      child: MyApp(),
+    ProviderScope(
+      overrides: [
+        sharedPreferencesRepositoryProvider.overrideWithValue(
+          SharedPreferencesRepository(sharedPreferences),
+        ),
+      ],
+      child: const MyApp(),
     ),
   );
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: VersionCheckPage(),
-    );
-  }
 }
