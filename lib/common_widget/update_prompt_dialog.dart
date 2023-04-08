@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:update_sample/emun/update_request_type.dart';
+import 'package:update_sample/feature/util/forced_update/update_request_provider.dart';
 import 'package:update_sample/feature/util/shared_preferences/shared_preferences_repository.dart';
 
 class UpdatePromptDialog extends ConsumerWidget {
@@ -30,6 +31,7 @@ class UpdatePromptDialog extends ConsumerWidget {
                       SharedPreferencesKey.cancelledUpdateDateTime,
                       DateTime.now().toString(),
                     );
+                ref.invalidate(updateRequesterProvider);
               },
               child: const Text('キャンセル'),
             ),

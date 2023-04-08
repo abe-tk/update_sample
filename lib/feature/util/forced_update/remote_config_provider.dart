@@ -7,10 +7,8 @@ final remoteConfigProvider = FutureProvider<FirebaseRemoteConfig>(
     final rc = FirebaseRemoteConfig.instance;
 
     // 例）flavorで開発環境ごとにintervalを分ける場合
-    // final interval = flavor.isDev 
-    //   ? Duration.zero 
-    //   : const Duration(minutes: 12);
-    const interval =  Duration.zero;
+    // final interval = flavor.isDev ? Duration.zero : const Duration(hours: 1);
+    const interval = Duration.zero;
 
     // タイムアウトとフェッチのインターバル時間を設定する
     await rc.setConfigSettings(

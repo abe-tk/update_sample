@@ -12,7 +12,10 @@ class TopPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // updateの確認
-    final updateRequestType = ref.watch(updateRequesterProvider).value;
+    final updateRequestType = ref.watch(updateRequesterProvider).whenOrNull(
+          skipLoadingOnRefresh: false,
+          data: (updateRequestType) => updateRequestType,
+        );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // アップデートがあった場合

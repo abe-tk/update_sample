@@ -23,11 +23,11 @@ final updateRequesterProvider = FutureProvider<UpdateRequestType>((ref) async {
 
   // 現在のアプリケーションを取得
   final appPackageInfo = await PackageInfo.fromPlatform();
-  final appVer = Version.parse(appPackageInfo.version);
+  final appVersion = Version.parse(appPackageInfo.version);
 
-  // Remote Configから取得した値
-  final latestVer = Version.parse(updateInfo.latestVer);
-  final requiredVer = Version.parse(updateInfo.requiredVer);
+  // shared_preferencesで保存ている「キャンセル」を押下した日時を取得
+  final latestVersion = Version.parse(updateInfo.latestVersion);
+  final requiredVersion = Version.parse(updateInfo.requiredVersion);
   final enabledAt = updateInfo.enabledAt;
 
   // shared_preferencesで保存ている「キャンセル」を押下した日時を取得
@@ -36,23 +36,22 @@ final updateRequesterProvider = FutureProvider<UpdateRequestType>((ref) async {
       .fetch<String>(SharedPreferencesKey.cancelledUpdateDateTime);
 
   // 現在のバージョンより新しいバージョンが指定されているか
-  final hasNewVersion = latestVer > appVer || requiredVer > appVer;
+  final hasNewVersion =
+      latestVersion > appVersion || requiredVersion > appVersion;
 
-  // ダイアログ表示が有効期限内か
+  // ダイアログ表示が有効かどうか
   late bool isEnabled;
-  if (cancelledUpdateDateTime != null) {
-    // Remote Configで設定した日時が、キャンセルボタンを押した日時より後 かつ
-    //   Remote Configで設定した日時が、現在日時がより前
-    isEnabled = enabledAt.isAfter(DateTime.parse(cancelledUpdateDateTime)) &&
-        enabledAt.isBefore(DateTime.now());
+  if (enabledAt.isBefore(DateTime.now())) {
+    isEnabled = cancelledUpdateDateTime == null ||
+        enabledAt.isAfter(DateTime.parse(cancelledUpdateDateTime));
   } else {
-    isEnabled = true;
+    isEnabled = false;
   }
 
   if (!isEnabled || !hasNewVersion) {
     return UpdateRequestType.not;
   }
-  return latestVer > appVer && requiredVer <= appVer
+  return latestVersion > appVersion && requiredVersion <= appVersion
       ? UpdateRequestType.cancelable
       : UpdateRequestType.forcibly;
 });

@@ -21,10 +21,10 @@ UpdateInfo _$UpdateInfoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UpdateInfo {
   /// 要求バージョン（任意）
-  String get latestVer => throw _privateConstructorUsedError;
+  String get latestVersion => throw _privateConstructorUsedError;
 
   /// 要求バージョン（強制）
-  String get requiredVer => throw _privateConstructorUsedError;
+  String get requiredVersion => throw _privateConstructorUsedError;
 
   /// RemoteConfigが有効になる日時
   DateTime get enabledAt => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $UpdateInfoCopyWith<$Res> {
           UpdateInfo value, $Res Function(UpdateInfo) then) =
       _$UpdateInfoCopyWithImpl<$Res, UpdateInfo>;
   @useResult
-  $Res call({String latestVer, String requiredVer, DateTime enabledAt});
+  $Res call({String latestVersion, String requiredVersion, DateTime enabledAt});
 }
 
 /// @nodoc
@@ -57,18 +57,18 @@ class _$UpdateInfoCopyWithImpl<$Res, $Val extends UpdateInfo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? latestVer = null,
-    Object? requiredVer = null,
+    Object? latestVersion = null,
+    Object? requiredVersion = null,
     Object? enabledAt = null,
   }) {
     return _then(_value.copyWith(
-      latestVer: null == latestVer
-          ? _value.latestVer
-          : latestVer // ignore: cast_nullable_to_non_nullable
+      latestVersion: null == latestVersion
+          ? _value.latestVersion
+          : latestVersion // ignore: cast_nullable_to_non_nullable
               as String,
-      requiredVer: null == requiredVer
-          ? _value.requiredVer
-          : requiredVer // ignore: cast_nullable_to_non_nullable
+      requiredVersion: null == requiredVersion
+          ? _value.requiredVersion
+          : requiredVersion // ignore: cast_nullable_to_non_nullable
               as String,
       enabledAt: null == enabledAt
           ? _value.enabledAt
@@ -86,7 +86,7 @@ abstract class _$$_UpdateInfoCopyWith<$Res>
       __$$_UpdateInfoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String latestVer, String requiredVer, DateTime enabledAt});
+  $Res call({String latestVersion, String requiredVersion, DateTime enabledAt});
 }
 
 /// @nodoc
@@ -100,18 +100,18 @@ class __$$_UpdateInfoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? latestVer = null,
-    Object? requiredVer = null,
+    Object? latestVersion = null,
+    Object? requiredVersion = null,
     Object? enabledAt = null,
   }) {
     return _then(_$_UpdateInfo(
-      latestVer: null == latestVer
-          ? _value.latestVer
-          : latestVer // ignore: cast_nullable_to_non_nullable
+      latestVersion: null == latestVersion
+          ? _value.latestVersion
+          : latestVersion // ignore: cast_nullable_to_non_nullable
               as String,
-      requiredVer: null == requiredVer
-          ? _value.requiredVer
-          : requiredVer // ignore: cast_nullable_to_non_nullable
+      requiredVersion: null == requiredVersion
+          ? _value.requiredVersion
+          : requiredVersion // ignore: cast_nullable_to_non_nullable
               as String,
       enabledAt: null == enabledAt
           ? _value.enabledAt
@@ -125,8 +125,8 @@ class __$$_UpdateInfoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UpdateInfo implements _UpdateInfo {
   const _$_UpdateInfo(
-      {required this.latestVer,
-      required this.requiredVer,
+      {required this.latestVersion,
+      required this.requiredVersion,
       required this.enabledAt});
 
   factory _$_UpdateInfo.fromJson(Map<String, dynamic> json) =>
@@ -134,11 +134,11 @@ class _$_UpdateInfo implements _UpdateInfo {
 
   /// 要求バージョン（任意）
   @override
-  final String latestVer;
+  final String latestVersion;
 
   /// 要求バージョン（強制）
   @override
-  final String requiredVer;
+  final String requiredVersion;
 
   /// RemoteConfigが有効になる日時
   @override
@@ -146,7 +146,7 @@ class _$_UpdateInfo implements _UpdateInfo {
 
   @override
   String toString() {
-    return 'UpdateInfo(latestVer: $latestVer, requiredVer: $requiredVer, enabledAt: $enabledAt)';
+    return 'UpdateInfo(latestVersion: $latestVersion, requiredVersion: $requiredVersion, enabledAt: $enabledAt)';
   }
 
   @override
@@ -154,10 +154,10 @@ class _$_UpdateInfo implements _UpdateInfo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UpdateInfo &&
-            (identical(other.latestVer, latestVer) ||
-                other.latestVer == latestVer) &&
-            (identical(other.requiredVer, requiredVer) ||
-                other.requiredVer == requiredVer) &&
+            (identical(other.latestVersion, latestVersion) ||
+                other.latestVersion == latestVersion) &&
+            (identical(other.requiredVersion, requiredVersion) ||
+                other.requiredVersion == requiredVersion) &&
             (identical(other.enabledAt, enabledAt) ||
                 other.enabledAt == enabledAt));
   }
@@ -165,7 +165,7 @@ class _$_UpdateInfo implements _UpdateInfo {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, latestVer, requiredVer, enabledAt);
+      Object.hash(runtimeType, latestVersion, requiredVersion, enabledAt);
 
   @JsonKey(ignore: true)
   @override
@@ -183,8 +183,8 @@ class _$_UpdateInfo implements _UpdateInfo {
 
 abstract class _UpdateInfo implements UpdateInfo {
   const factory _UpdateInfo(
-      {required final String latestVer,
-      required final String requiredVer,
+      {required final String latestVersion,
+      required final String requiredVersion,
       required final DateTime enabledAt}) = _$_UpdateInfo;
 
   factory _UpdateInfo.fromJson(Map<String, dynamic> json) =
@@ -193,11 +193,11 @@ abstract class _UpdateInfo implements UpdateInfo {
   @override
 
   /// 要求バージョン（任意）
-  String get latestVer;
+  String get latestVersion;
   @override
 
   /// 要求バージョン（強制）
-  String get requiredVer;
+  String get requiredVersion;
   @override
 
   /// RemoteConfigが有効になる日時
